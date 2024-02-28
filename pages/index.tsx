@@ -66,7 +66,7 @@ export default function Index() {
     () =>
       candyGuard
         ? solPaymentGuard
-          ? Number(solPaymentGuard.lamports.basisPoints) / 1e9 + " SOL"
+          ? Number(solPaymentGuard.lamports.basisPoints) / 1e9 + " SOL (+ Fees)"
           : "Free mint"
         : "...",
     [candyGuard]
@@ -120,7 +120,7 @@ export default function Index() {
         )
         .sendAndConfirm(umiWalletAdapter)
 
-      setFormMessage("Minted successfully!")
+      setFormMessage("Minted successfully! Check your wallet")
     } catch (e: any) {
       const msg = fromTxError(e)
 
@@ -180,12 +180,11 @@ export default function Index() {
                 width: "320px",
               }}
             >
-              <h1>Mint now</h1>
+              <h1>Mint A Degen Inu</h1>
               <p style={{ color: "#807a82", marginBottom: "32px" }}>
-                Mint your NFT now. You will receive a random NFT from the
-                collection.
+                Mint your Degen Inu now. You will receive a random NFT from our
+                1st collection.
               </p>
-
               <div
                 style={{
                   display: "flex",
@@ -211,8 +210,7 @@ export default function Index() {
                     marginBottom: "16px",
                   }}
                 >
-                  <span style={{ fontSize: "11px" }}>Live</span>
-                  {/* <span style={{ fontSize: "11px" }}>512/1024</span> */}
+                  <span style={{ fontSize: "11px" }}>Live 74/100</span>
                 </div>
                 <button disabled={!publicKey || isLoading} onClick={mint}>
                   {isLoading ? "Minting your NFT..." : "Mint"}
