@@ -66,15 +66,12 @@ export default function Index() {
     () =>
       candyGuard
         ? solPaymentGuard
-          ? Number(solPaymentGuard.lamports.basisPoints) / 1e9 + " SOL (+ Fees)"
+          ? Number(solPaymentGuard.lamports.basisPoints) / (1e9 * 0.8) + " SOL"
           : "Free mint"
         : "...",
     [candyGuard]
   )
 
-  /**
-   * Setup guards arguments and mint from the candy machine
-   */
   const mint = async () => {
     if (!candyMachine) throw new Error("No candy machine")
     if (!candyGuard)
@@ -181,10 +178,20 @@ export default function Index() {
               }}
             >
               <h1>Mint A Degen Inu</h1>
-              <p style={{ color: "#807a82", marginBottom: "32px" }}>
+              <p style={{ color: "#807a82", marginBottom: "16px" }}>
                 Mint your Degen Inu now. You will receive a random NFT from our
                 1st collection.
               </p>
+              <div style={{ marginBottom: "16px" }}>
+                <a
+                  href="https://magiceden.io/marketplace/6ahYmH4DX35r6LyTQTEVWzLR893BPY8UpWZ74tE7ubMJ"
+                  target="_blank" // Opens the link in a new tab
+                  rel="noopener noreferrer" // Security measure for opening links in a new tab
+                  style={{ textDecoration: "underline" }} // Ensures the link is underlined
+                >
+                  View our collection on Magic Eden
+                </a>
+              </div>
               <div
                 style={{
                   display: "flex",
@@ -210,7 +217,9 @@ export default function Index() {
                     marginBottom: "16px",
                   }}
                 >
-                  <span style={{ fontSize: "11px" }}>Live 74/100</span>
+                  <span style={{ fontSize: "11px" }}>
+                    100 MAX - 3 MAX PER WALLET
+                  </span>
                 </div>
                 <button disabled={!publicKey || isLoading} onClick={mint}>
                   {isLoading ? "Minting your NFT..." : "Mint"}
@@ -235,6 +244,13 @@ export default function Index() {
                 >
                   {formMessage}
                 </p>
+                <div
+                  style={{
+                    marginTop: "10px",
+                    alignContent: "center",
+                    textAlign: "center",
+                  }}
+                ></div>
               </div>
             </div>
           </div>
